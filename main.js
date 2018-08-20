@@ -43,7 +43,8 @@ class Meteor {
      * 计算粒子到目标位置的长度（根据勾股定理来计算）
      */
     let c = Math.sqrt(Math.pow(this.tx - mx, 2) + Math.pow(this.ty - my, 2))
-    if (c <= 10) {
+    let rand = parseInt(Math.random() * 500)
+    if (c <= 10 || rand % 499 == 0) {
       //长度小于10则可以认为是到达目标位置，重新生成粒子
       this.randomXY()
     } else {
@@ -106,7 +107,7 @@ function init() {
 
   //初始化粒子
   for(let i = 0; i < count; ++i) {
-    meteors[i] = new Meteor(ctx, width, height)
+    meteors[i] = new Meteor(ctx, width, height, meteors)
   }
 }
 
